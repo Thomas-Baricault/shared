@@ -18,15 +18,15 @@ namespace tbaricault::shared
     T Lib::getSymbol(const std::string& name) const noexcept
     {
 #ifdef _WIN32
-        return (reinterpret_cast<T>(GetProcAddress(
+        return reinterpret_cast<T>(GetProcAddress(
             this->_handle,
             name.c_str()
-        )));
+        ));
 #else
-        return (reinterpret_cast<T>(dlsym(
+        return reinterpret_cast<T>(dlsym(
             this->_handle,
             name.c_str()
-        )));
+        ));
 #endif
     }
 

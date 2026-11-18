@@ -53,7 +53,7 @@ namespace tbaricault::shared
     Lib& Lib::operator=(Lib&& other) noexcept
     {
         if (&other == this)
-            return (*this);
+            return *this;
         if (!this->_self && this->_handle)
         {
 #ifdef _WIN32
@@ -67,22 +67,22 @@ namespace tbaricault::shared
         this->_path = std::move(other._path);
         other._self = false;
         other._handle = nullptr;
-        return (*this);
+        return *this;
     }
 
     Lib::operator bool() const noexcept
     {
-        return (this->_self || this->_handle != nullptr);
+        return this->_self || this->_handle != nullptr;
     }
 
     bool Lib::isSelf() const noexcept
     {
-        return (this->_self);
+        return this->_self;
     }
 
     const std::string& Lib::getPath() const noexcept
     {
-        return (this->_path);
+        return this->_path;
     }
 
 }
